@@ -1,28 +1,30 @@
+// Code quiz
+
 // Variable containing array of questions
 var questions = [
 	{
-    title: "Commonly used data types DO NOT include:",
-    choices: ["strings", "booleans", "alerts", "numbers"],
-    answer: "alerts"
+    title: "JavaScript is interpreted by the _________.",
+    choices: ["Client", "Server", "Object", "Coffee Maker"],
+    answer: "Client"
 	},
 	{
-	title: "The condition in an if / else statement is enclosed within ____.",
-    choices: ["quotes", "curly brackets", "parentheses", "square brackets"],
-    answer: "parentheses"
+	title: "Inside which HTML element do we put the JavaScript?",
+    choices: ["&lt;js&gt;", "&lt;scripting&gt;", "&lt;script&gt;", "&lt;javascript&gt;"],
+    answer: "&lt;script&gt;"
 	},
 	{
-    title: "Commonly used data types DO NOT include:",
-    choices: ["strings", "booleans", "alerts", "numbers"],
-    answer: "alerts"
+    title: "Using a(n) _______ statement is how you test for a specific condition.",
+    choices: ["Select", "If", "Switch", "For"],
+    answer: "If"
 	},
 	{
-    title: "The condition in an if / else statement is enclosed within ____.",
-    choices: ["quotes", "curly brackets", "parentheses", "square brackets"],
-    answer: "parentheses"
+    title: "What are variables used for in JavaScript?",
+    choices: ["Storing numbers, dates, or other values", "Varying randomly", "Menu at Starbucks", "None of the above"],
+    answer: "Storing numbers, dates, or other values"
 	},
 	{
-    title: "The condition in an if / else statement is enclosed within ____.",
-    choices: ["quotes", "curly brackets", "parentheses", "square brackets"],
-    answer: "parentheses"
+    title: "What is the correct JavaScript syntax to write 'Hello World'?",
+    choices: ["System.out.println('Hello World')", "println ('Hello World')", "document.write('Hello World')", "response.write('Hello World')"],
+    answer: "document.write('Hello World')"
 	}
 ];
