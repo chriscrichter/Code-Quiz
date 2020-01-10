@@ -18,7 +18,7 @@ function start() {
         //proceed to end the game function when timer is below 0 at any time
         if (timeRemaining <= 0) {
             clearInterval(timer);
-            endGame(); 
+            gameOver(); 
         }
     }, 1000);
 
@@ -26,38 +26,34 @@ function start() {
 }
 
 //stop the timer to end the game 
-function endGame() {
+function gameOver() {
     clearInterval(timer);
 
-    var quizContent = `
-    <h2>Game over!</h2>
+    var quizText = `
+    <h2>Game Over</h2>
     <h3>You got ` + score / 20 +  ` questions correct!</h3>
     <h3>Your score is ` + score +  ` out of 100!</h3>
     <input type="text" id="name" placeholder="First name"> 
-    <button onclick="setScore()">Set score</button><button onclick="resetGame()">Play Again!</button>`;
+    <button onclick="setScore()">Set score</button><button onclick="newGame()">Play Again!</button>`;
     document.getElementById("quizResult").textContent = '';
-    document.getElementById("quizMain").innerHTML = quizContent;
+    document.getElementById("quizMain").innerHTML = quizText;
 }
 
 //store the scores on local storage
 function setScore() {
     localStorage.setItem("highscore", score);
-    localStorage.setItem("highscoreName",  document.getElementById('name').value);
-    getScore();
+    localStorage.setItem("highscoreName", document.getElementById('name').value);
+    playerScore();
 }
 
-
-function getScore() {
-    var quizContent = `
+function playerScore() {
+    var quizText = `
     <h2>The highscore for ` + localStorage.getItem("highscoreName") + ` is:</h2>
-
     <h1>` + localStorage.getItem("highscore") + `</h1><br> 
-    
-    <button onclick="clearScore()">Clear score</button><button onclick="resetGame()">Play Again!</button>
-    
-    `;
 
-    document.getElementById("quizMain").innerHTML = quizContent;
+    <button onclick="clearScore()">Clear score</button><button onclick="newGame()">Play Again!</button>
+    `;
+    document.getElementById("quizMain").innerHTML = quizText;
 }
 
 //clears the score name and value in the local storage if the user selects 'clear score'
@@ -65,11 +61,11 @@ function clearScore() {
     localStorage.setItem("highscore", "");
     localStorage.setItem("highscoreName",  "");
 
-    resetGame();
+    newGame();
 }
 
 //reset the game 
-function resetGame() {
+function newGame() {
     clearInterval(timer);
     score = 0;
     currentQuestion = -1;
@@ -78,7 +74,7 @@ function resetGame() {
 
     document.getElementById("timeRemaining").innerHTML = timeRemaining;
 
-    var quizContent = `
+    var quizText = `
     <h1>
         Coding Quiz Challenge
     </h1>
@@ -87,7 +83,7 @@ function resetGame() {
     </h3>
     <button onclick="start()">Start Quiz</button>`;
 
-    document.getElementById("quizMain").innerHTML = quizContent;
+    document.getElementById("quizMain").innerHTML = quizText;
 }
 
 //deduct 15 seconds from the timer if user chooses an incorrect answer
@@ -117,11 +113,11 @@ function next() {
     currentQuestion++;
 
     if (currentQuestion > questions.length - 1) {
-        endGame();
+        gameOver();
         return;
     }
 
-    var quizContent = "<h2>" + questions[currentQuestion].title + "</h2>"
+    var quizText = "<h2>" + questions[currentQuestion].title + "</h2>"
 
     for (var buttonLoop = 0; buttonLoop < questions[currentQuestion].choices.length; buttonLoop++) {
         var buttonCode = "<button onclick=\"[ANS]\">[CHOICE]</button>"; 
@@ -131,9 +127,9 @@ function next() {
         } else {
             buttonCode = buttonCode.replace("[ANS]", "incorrect()");
         }
-        quizContent += buttonCode
+        quizText += buttonCode
     }
 
 
-    document.getElementById("quizMain").innerHTML = quizContent;
+    document.getElementById("quizMain").innerHTML = quizText;
 }
