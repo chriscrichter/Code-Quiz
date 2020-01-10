@@ -1,13 +1,13 @@
 // Code quiz
 
-//score and timer variables
-var score = 0;
-var currentQuestion = -1;
-var timeRemaining = 0;
+// timer and score variables
 var timer;
+var timeRemaining = 0;
+var currentQuestion = -1;
+var score = 0;
 
-//start button starts countdown timer
-function start() {
+// start button starts countdown timer
+function startTimer() {
 
     timeRemaining = 75;
     document.getElementById("timeRemaining").innerHTML = timeRemaining;
@@ -25,7 +25,7 @@ function start() {
     next();
 }
 
-//stop the timer to end the game 
+// stop the timer to end the game 
 function gameOver() {
     clearInterval(timer);
 
@@ -39,7 +39,7 @@ function gameOver() {
     document.getElementById("quizMain").innerHTML = quizText;
 }
 
-//scores stored in local storage
+// scores stored in local storage
 function setScore() {
     localStorage.setItem("highscore", score);
     localStorage.setItem("highscoreInitials", document.getElementById('initials').value);
@@ -63,7 +63,7 @@ function clearScore() {
     newGame();
 }
 
-//game reset
+// game reset
 function newGame() {
     clearInterval(timer);
     score = 0;
@@ -80,12 +80,12 @@ function newGame() {
     <h3>
         Click to play!   
     </h3>
-    <button onclick="start()">Start Quiz</button>`;
+    <button onclick="startTimer()">Start Quiz</button>`;
 
     document.getElementById("quizMain").innerHTML = quizText;
 }
 
-//15 seconds deducted for an incorrect answer
+// 15 seconds deducted for an incorrect answer
 function incorrect() {
     timeRemaining -= 15;
     	document.getElementById("quizResult").textContent = 'Incorrect 🙁';
@@ -96,7 +96,7 @@ function incorrect() {
     next();
 }
 
-//20 points added to the score for a correct answer
+// 20 points added to the score for a correct answer
 function correct() {
     score += 20;
     	document.getElementById("quizResult").textContent = 'Correct! 😁';
@@ -107,7 +107,7 @@ function correct() {
     next();
 }
 
-//loops through the questions 
+// loops through the questions 
 function next() {
     currentQuestion++;
 
