@@ -6,9 +6,9 @@
 }
 .right {
     float: right;
-    padding-right: 24px;
+    padding-right: 34px;
 }
-#nav {
+#navbar {
     display: inline-block;
     font-size: 20px;
     width: 100%;
@@ -22,9 +22,9 @@ body {
 #quiz {
     text-align: center;
 }
-#quizBody {
+#quizMain {
     text-align: center;
-    padding: 12vh;
+    padding: 24px;
 }
 #quizResult {
     text-align: center;
@@ -51,6 +51,5 @@ button {
     margin: 4px;
 }
 button:hover {
-    transition-duration: 0.4s;
     background-color: #99ced3;
 }

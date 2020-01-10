@@ -1,22 +1,22 @@
 // Code quiz
 
-//setting the numerical variables for the functions.. scores and timers.. 
+//score and timer variables
 var score = 0;
 var currentQuestion = -1;
-var timeLeft = 0;
+var timeRemaining = 0;
 var timer;
 
 //starts the countdown timer once user clicks the 'start' button
 function start() {
 
-    timeLeft = 75;
-    document.getElementById("timeLeft").innerHTML = timeLeft;
+    timeRemaining = 75;
+    document.getElementById("timeRemaining").innerHTML = timeRemaining;
 
     timer = setInterval(function() {
-        timeLeft--;
-        document.getElementById("timeLeft").innerHTML = timeLeft;
+        timeRemaining--;
+        document.getElementById("timeRemaining").innerHTML = timeRemaining;
         //proceed to end the game function when timer is below 0 at any time
-        if (timeLeft <= 0) {
+        if (timeRemaining <= 0) {
             clearInterval(timer);
             endGame(); 
         }
@@ -36,7 +36,7 @@ function endGame() {
     <input type="text" id="name" placeholder="First name"> 
     <button onclick="setScore()">Set score</button><button onclick="resetGame()">Play Again!</button>`;
     document.getElementById("quizResult").textContent = '';
-    document.getElementById("quizBody").innerHTML = quizContent;
+    document.getElementById("quizMain").innerHTML = quizContent;
 }
 
 //store the scores on local storage
@@ -57,7 +57,7 @@ function getScore() {
     
     `;
 
-    document.getElementById("quizBody").innerHTML = quizContent;
+    document.getElementById("quizMain").innerHTML = quizContent;
 }
 
 //clears the score name and value in the local storage if the user selects 'clear score'
@@ -73,10 +73,10 @@ function resetGame() {
     clearInterval(timer);
     score = 0;
     currentQuestion = -1;
-    timeLeft = 0;
+    timeRemaining = 0;
     timer = null;
 
-    document.getElementById("timeLeft").innerHTML = timeLeft;
+    document.getElementById("timeRemaining").innerHTML = timeRemaining;
 
     var quizContent = `
     <h1>
@@ -87,12 +87,12 @@ function resetGame() {
     </h3>
     <button onclick="start()">Start Quiz</button>`;
 
-    document.getElementById("quizBody").innerHTML = quizContent;
+    document.getElementById("quizMain").innerHTML = quizContent;
 }
 
 //deduct 15 seconds from the timer if user chooses an incorrect answer
 function incorrect() {
-    timeLeft -= 15;
+    timeRemaining -= 15;
     	document.getElementById("quizResult").textContent = 'Incorrect 🙁';
         var audioElement = document.createElement("audio");
         audioElement.setAttribute("src", "assets/sounds/incorrect-sound.mp3");
@@ -135,5 +135,5 @@ function next() {
     }
 
 
-    document.getElementById("quizBody").innerHTML = quizContent;
+    document.getElementById("quizMain").innerHTML = quizContent;
 }
