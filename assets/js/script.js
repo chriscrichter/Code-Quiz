@@ -6,7 +6,7 @@ var timeRemaining = 0;
 var currentQuestion = -1;
 var score = 0;
 
-// start button starts countdown timer
+// start button starts countdown timer - 1000 ms = 1 second
 function startTimer() {
 
     timeRemaining = 75;
@@ -18,11 +18,11 @@ function startTimer() {
 
         if (timeRemaining <= 0) {
             clearInterval(timer);
-            gameOver(); 
+            gameOver();
         }
     }, 1000);
 
-    next();
+    nextQuestion();
 }
 
 // stop the timer to end the game 
@@ -30,7 +30,7 @@ function gameOver() {
     clearInterval(timer);
 
     var quizText = `
-    <h2>Game Over</h2>
+    <h1>Game Over</h1>
     <h3>You got ` + score / 20 +  ` questions correct!</h3>
     <h3>Your score is ` + score +  ` out of 100!</h3>
     <input type="text" id="initials" placeholder="initials"> 
@@ -93,7 +93,7 @@ function incorrect() {
         audioElement.setAttribute("src", "assets/sounds/incorrect-sound.mp3");
         audioElement.play();
 
-    next();
+    nextQuestion();
 }
 
 // 20 points added to the score for a correct answer
@@ -104,11 +104,11 @@ function correct() {
         audioElement.setAttribute("src", "assets/sounds/correct-sound.mp3");
         audioElement.play();
 
-    next();
+    nextQuestion();
 }
 
 // loops through the questions 
-function next() {
+function nextQuestion() {
     currentQuestion++;
 
     if (currentQuestion > questions.length - 1) {

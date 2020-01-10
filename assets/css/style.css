@@ -35,13 +35,16 @@ h4 {
     padding: 10px 8px 10px 8px;
 }
 a {
-    text-decoration: none;
-    color: black;
+    color: #000000;
+	text-decoration: underline;
+}
+a:hover {
+    color: #99ced3;
 }
 button {
     border: none;
     background-color: #4d6d9a;
-    color: white;
+    color: #ffffff;
     border-radius: 5px;
     padding: 10px 16px 10px 16px;
     font-size: 17px;
