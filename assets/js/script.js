@@ -6,7 +6,7 @@ var currentQuestion = -1;
 var timeRemaining = 0;
 var timer;
 
-//starts the countdown timer once user clicks the 'start' button
+//start button starts countdown timer
 function start() {
 
     timeRemaining = 75;
@@ -15,7 +15,7 @@ function start() {
     timer = setInterval(function() {
         timeRemaining--;
         document.getElementById("timeRemaining").innerHTML = timeRemaining;
-        //proceed to end the game function when timer is below 0 at any time
+
         if (timeRemaining <= 0) {
             clearInterval(timer);
             gameOver(); 
@@ -33,22 +33,22 @@ function gameOver() {
     <h2>Game Over</h2>
     <h3>You got ` + score / 20 +  ` questions correct!</h3>
     <h3>Your score is ` + score +  ` out of 100!</h3>
-    <input type="text" id="name" placeholder="First name"> 
+    <input type="text" id="initials" placeholder="initials"> 
     <button onclick="setScore()">Set score</button><button onclick="newGame()">Play Again!</button>`;
     document.getElementById("quizResult").textContent = '';
     document.getElementById("quizMain").innerHTML = quizText;
 }
 
-//store the scores on local storage
+//scores stored in local storage
 function setScore() {
     localStorage.setItem("highscore", score);
-    localStorage.setItem("highscoreName", document.getElementById('name').value);
+    localStorage.setItem("highscoreInitials", document.getElementById('initials').value);
     playerScore();
 }
 
 function playerScore() {
     var quizText = `
-    <h2>The highscore for ` + localStorage.getItem("highscoreName") + ` is:</h2>
+    <h2>The highscore for ` + localStorage.getItem("highscoreInitials") + ` is:</h2>
     <h1>` + localStorage.getItem("highscore") + `</h1><br> 
 
     <button onclick="clearScore()">Clear score</button><button onclick="newGame()">Play Again!</button>
@@ -56,15 +56,14 @@ function playerScore() {
     document.getElementById("quizMain").innerHTML = quizText;
 }
 
-//clears the score name and value in the local storage if the user selects 'clear score'
 function clearScore() {
     localStorage.setItem("highscore", "");
-    localStorage.setItem("highscoreName",  "");
+    localStorage.setItem("highscoreInitials",  "");
 
     newGame();
 }
 
-//reset the game 
+//game reset
 function newGame() {
     clearInterval(timer);
     score = 0;
@@ -86,7 +85,7 @@ function newGame() {
     document.getElementById("quizMain").innerHTML = quizText;
 }
 
-//deduct 15 seconds from the timer if user chooses an incorrect answer
+//15 seconds deducted for an incorrect answer
 function incorrect() {
     timeRemaining -= 15;
     	document.getElementById("quizResult").textContent = 'Incorrect 🙁';
@@ -97,7 +96,7 @@ function incorrect() {
     next();
 }
 
-//add 20 to the score when user chooses the correct answer
+//20 points added to the score for a correct answer
 function correct() {
     score += 20;
     	document.getElementById("quizResult").textContent = 'Correct! 😁';
